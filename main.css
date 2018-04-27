@@ -1,0 +1,6 @@
+body{
+    margin: 0;
+}
+#game-canvas{
+    display: block;
+}

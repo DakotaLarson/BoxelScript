@@ -1,0 +1,14 @@
+{
+  "name": "builderjs",
+  "version": "1.0.0",
+  "description": "ThreeJS Project",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dakota Larson",
+  "license": "ISC",
+  "dependencies": {
+    "three": "^0.92.0"
+  }
+}
