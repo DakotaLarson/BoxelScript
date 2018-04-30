@@ -1,0 +1,37 @@
+html, body{
+    margin: 0;
+    background-color: black;
+    font-family: 'Nova Mono', monospace;
+}
+#game-canvas{
+    display: block;
+}
+.main-menu{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #303030;
+    color: #d0d0d0;
+    text-align: center;
+    display: none;
+}
+.main-menu-title{
+    font-size: 15vmin;
+    margin: 5vmin 0 10vmin 0;
+    display: inline-block;
+}
+.main-menu-selection{
+    font-size: 5vmin;
+    margin: 1vmin;
+    display: inline-block;
+    border: solid 1px;
+    padding: 0 5px;
+}
+.main-menu-selection:hover{
+    background-color: green;
+    border-color: green;
+    cursor: pointer;
+}
+.main-menu-sub{
+    display: none;
+}

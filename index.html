@@ -3,9 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>BuilderJS</title>
-    <link rel="stylesheet" type="text/css" href="main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Nova+Mono" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
 </head>
 <body>
+<div class="main-menu">
+    <span class="main-menu-title">BuilderJS</span><br/>
+    <div class="main-menu-sub main-menu-top">
+        <span class="main-menu-selection opt-sp">Singleplayer</span><br/>
+        <span class="main-menu-selection opt-mp">Multiplayer</span><br/>
+        <span class="main-menu-selection opt-opt">Options</span>
+    </div>
+    <div class="main-menu-sub main-menu-sp">
+        <span class="main-menu-selection opt-create">Create World</span><br/>
+        <span class="main-menu-selection opt-load">Load World</span><br/>
+        <span class="main-menu-selection opt-cancel">Cancel</span>
+    </div>
+    <div class="main-menu-sub main-menu-mp">
+        <span class="main-menu-selection opt-connect">Connect</span><br/>
+        <span class="main-menu-selection opt-cancel">Cancel</span>
+    </div>
+    <div class="main-menu-sub main-menu-opt">
+        <span class="main-menu-selection opt-cancel">Cancel</span>
+    </div>
+
+</div>
 </body>
-<script src="bundle.js"></script>
+<script src="./js/main/bundle.js"></script>
 </html>
+<!--watchify ./js/main/Main.js -o ./js/main/bundle.js -v --debug-->
