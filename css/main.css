@@ -10,7 +10,7 @@ html, body{
     position: absolute;
     height: 100%;
     width: 100%;
-    background-color: #303030;
+    background: radial-gradient(#303030, #101010);
     color: #d0d0d0;
     text-align: center;
     display: none;
@@ -19,13 +19,14 @@ html, body{
     font-size: 15vmin;
     margin: 5vmin 0 10vmin 0;
     display: inline-block;
+    color: #ffffff
 }
 .main-menu-selection{
     font-size: 5vmin;
     margin: 1vmin;
     display: inline-block;
     border: solid 1px;
-    padding: 0 5px;
+    padding: 0 1vmin;
 }
 .main-menu-selection:hover{
     background-color: green;
@@ -34,4 +35,10 @@ html, body{
 }
 .main-menu-sub{
     display: none;
+}
+.no-select{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
