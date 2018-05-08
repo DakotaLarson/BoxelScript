@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>BuilderJS</title>
+    <title>BoxelScript</title>
     <link href="https://fonts.googleapis.com/css?family=Nova+Mono" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
 </head>
 <body>
 <div class="main-menu no-select">
-    <span class="main-menu-title">BuilderJS</span><br/>
+    <span class="main-menu-title">BoxelScript</span><br/>
     <div class="main-menu-sub main-menu-top">
         <span class="main-menu-selection opt-sp">Singleplayer</span><br/>
         <span class="main-menu-selection opt-mp">Multiplayer</span><br/>
@@ -28,7 +28,8 @@
     </div>
 
 </div>
+<canvas id="game-canvas"></canvas>
 </body>
-<script src="./js/main/bundle.js"></script>
+<script src="bundle.js"></script>
 </html>
-<!--watchify ./js/main/Main.js -o ./js/main/bundle.js -v --debug-->
+<!--watchify ./js/main/Main.js -o bundle.js -v --debug-->

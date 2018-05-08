@@ -1,20 +1,28 @@
 const eventListeners = {};
-const eventTitles = ['resize', 'mousemove', 'click'];
+const eventTitles = [
+    'resize',
+    'mousemove',
+    'click',
+    'keydown',
+    'keyup',
+    'mousedown',
+    'mouseup',
+    'pointerlockchange',
+    'pointerlockerror'
+];
 
 let displayDimensions = {
     width: window.innerWidth,
     height: window.innerHeight
 };
-module.exports.init = function(domElement){
-    domElement.id = 'game-canvas';
+module.exports.addElement = function(domElement){
     document.body.appendChild(domElement);
-    module.exports.addEventListener('resize', function(){
-        displayDimensions.width = window.innerWidth;
-        displayDimensions.height = window.innerHeight;
-    });
 };
 module.exports.getDisplayDimensions = function(){
     return displayDimensions;
+};
+module.exports.getElement = function(selector){
+    return document.body.querySelector(selector);
 };
 module.exports.addEventListener = function(event, callback){
     if(eventListeners.hasOwnProperty(event)){
@@ -33,15 +41,37 @@ module.exports.removeEventListener = function(event, callback){
         }
     }
 };
-for(let i = 0; i < eventTitles.length; i ++){
-    window.addEventListener(eventTitles[i], function(event){
-        if(eventListeners.hasOwnProperty(eventTitles[i])){
-            let callbackList = eventListeners[eventTitles[i]];
-            for(let i = 0; i < callbackList.length; i ++){
-                callbackList[i](event);
-            }
-        }
+module.exports.requestPointerLock = function(){
+    document.body.requestPointerLock();
+};
+module.exports.exitPointerLock = function(){
+    document.exitPointerLock();
+};
+(function(){
+    stopDefaultActions();
+    module.exports.addEventListener('resize', function(){
+        displayDimensions.width = window.innerWidth;
+        displayDimensions.height = window.innerHeight;
     });
+    for(let i = 0; i < eventTitles.length; i ++){
+        window.addEventListener(eventTitles[i], function(event){
+            if(eventListeners.hasOwnProperty(eventTitles[i])){
+                let callbackList = eventListeners[eventTitles[i]];
+                for(let i = 0; i < callbackList.length; i ++){
+                    callbackList[i](event);
+                }
+            }
+        });
+    }
+})();
+function stopDefaultActions(){
+    document.oncontextmenu = function(){
+        return false;
+    };
+    document.addEventListener('keydown', function(event){
+        event.preventDefault();
+    });
+
 }
 // window.addEventListener('resize', function(){
 //
