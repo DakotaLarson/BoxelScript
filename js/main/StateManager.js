@@ -13,8 +13,8 @@ module.exports.detach = function(appState){
         appState.disable();
     }
 };
-module.exports.update = function(){
+module.exports.update = function(delta){
     for(let i = 0; i < states.length; i ++){
-        states[i].update();
-    }
+        states[i].update(delta);
+    }    
 };
