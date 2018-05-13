@@ -1,5 +1,5 @@
-const StateManager = require('./StateManager');
-const MainMenuState = require('./states/MainMenuState');
+const StateManager = require('./main/StateManager');
+const MainMenuState = require('./main/states/MainMenuState');
 StateManager.attach(new MainMenuState());
 let prevTime = performance.now();
 let animate = function () {

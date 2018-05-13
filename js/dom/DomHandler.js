@@ -47,6 +47,9 @@ module.exports.requestPointerLock = function(){
 module.exports.exitPointerLock = function(){
     document.exitPointerLock();
 };
+module.exports.getPointerLockElement = function(){
+    return document.pointerLockElement;
+};
 (function(){
     stopDefaultActions();
     module.exports.addEventListener('resize', function(){
@@ -54,7 +57,7 @@ module.exports.exitPointerLock = function(){
         displayDimensions.height = window.innerHeight;
     });
     for(let i = 0; i < eventTitles.length; i ++){
-        window.addEventListener(eventTitles[i], function(event){
+        document.addEventListener(eventTitles[i], function(event){
             if(eventListeners.hasOwnProperty(eventTitles[i])){
                 let callbackList = eventListeners[eventTitles[i]];
                 for(let i = 0; i < callbackList.length; i ++){
