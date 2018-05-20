@@ -1,0 +1,39 @@
+import {WebGLRenderer} from 'three';
+
+import Component from 'Component';
+import EventHandler from 'EventHandler';
+import DomHandler from 'DomHandler';
+
+export default class Renderer extends Component{
+
+    constructor(scene, camera){
+        super();
+        this.renderer = new WebGLRenderer({
+            canvas: DomHandler.getElement('#game-canvas'),
+            antialias: true
+        });
+        this.scene = scene;
+        this.camera = camera;
+        this.handleResize();
+
+    }
+
+    enable = () => {
+        EventHandler.addMonitorEventListener(EventHandler.Event.DOM_RESIZE, this.handleResize);
+        EventHandler.addMonitorEventListener(EventHandler.Event.GAME_ANIMATION_UPDATE, this.render);
+    };
+
+    disable = () => {
+        EventHandler.removeEventListener(EventHandler.Event.DOM_RESIZE, this.handleResize);
+        EventHandler.removeEventListener(EventHandler.Event.GAME_ANIMATION_UPDATE, this.render);
+    };
+
+    render = () => {
+        this.renderer.render(this.scene, this.camera);
+    };
+
+    handleResize = () =>{
+        let dimensions = DomHandler.getDisplayDimensions();
+        this.renderer.setSize(dimensions.width, dimensions.height);
+    };
+}

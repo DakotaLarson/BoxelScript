@@ -1,10 +1,12 @@
 {
-  "name": "builderjs",
+  "name": "boxelscript",
   "version": "1.0.0",
   "description": "ThreeJS Project",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "webpack": "webpack",
+    "build": "webpack",
+    "start": "webpack-dev-server --output-public-path=/build/"
   },
   "repository": {
     "type": "git",
@@ -13,11 +15,16 @@
   "author": "Dakota Larson",
   "license": "ISC",
   "dependencies": {
-    "three": "^0.92.0"
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "three": "^0.92.0",
+    "webpack-dev-server": "^3.1.4"
   },
   "devDependencies": {
-    "browserify": "^16.2.0",
-    "gulp": "^3.9.1",
-    "vinyl-source-stream": "^2.0.0"
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
   }
 }
