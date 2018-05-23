@@ -1,1 +1,0 @@
-console.error("\nC:\\Users\\dakot\\WebstormProjects\\BoxelScript2\\js\\Game.js:1\nimport Component from './Component.js';\r\n^\nParseError: 'import' and 'export' may appear only with 'sourceType: module'");

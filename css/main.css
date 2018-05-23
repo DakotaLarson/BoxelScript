@@ -7,14 +7,16 @@ html, body{
     display: block;
 }
 /* Main Menu */
-.main-menu{
+.menu{
     position: absolute;
     height: 100%;
     width: 100%;
-    background: radial-gradient(#303030, #101010);
     color: #d0d0d0;
     text-align: center;
     display: none;
+}
+.main-menu{
+    background: radial-gradient(#303030, #101010);
 }
 .main-menu-title{
     font-size: 15vmin;
@@ -22,20 +24,24 @@ html, body{
     display: inline-block;
     color: #ffffff
 }
-.main-menu-selection{
+.menu-selection{
     font-size: 5vmin;
     margin: 1vmin;
     display: inline-block;
     border: solid 1px;
     padding: 0 1vmin;
 }
-.main-menu-selection:hover{
+.menu-selection:hover{
     background-color: green;
     border-color: green;
     cursor: pointer;
 }
 .main-menu-sub{
     display: none;
+}
+/*Game Menu*/
+.game-menu{
+    background-color: rgba(0, 0, 0, 0.25);
 }
 /* GUI */
 .gui{
@@ -57,4 +63,15 @@ html, body{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+/*Debug Panel*/
+.debug-panel{
+    display: inline-block;
+    width: 150px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.debug-data{
+    color: white;
+    font-size: 12px;
 }

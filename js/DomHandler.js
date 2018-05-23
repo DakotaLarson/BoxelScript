@@ -16,8 +16,12 @@ export default class DomHandler{
     static hasPointerLock = () => {
         return document.pointerLockElement !== null;
     };
-    static getElement = (query) => {
-        return document.querySelector(query);
+    static getElement = (query, parent) => {
+        if(parent){
+            return parent.querySelector(query);
+        }else{
+            return document.querySelector(query);
+        }
     };
 }
 
@@ -33,7 +37,6 @@ const eventTitles = {
     'keyup': EventHandler.Event.DOM_KEYUP,
     'mousedown': EventHandler.Event.DOM_MOUSEDOWN,
     'mouseup': EventHandler.Event.DOM_MOUSEUP,
-    'pointerlockchange': EventHandler.Event.DOM_POINTERLOCKCHANGE,
     'pointerlockerror': EventHandler.Event.DOM_POINTERLOCKERROR
 };
 const windowEventTitles = ['resize'];
@@ -52,10 +55,20 @@ for(let i = 0; i < keys.length; i ++){
             EventHandler.callEvent(eventHandlerEvent, event);
         });
     }
-
 }
+document.addEventListener('pointerlockchange', () => {
+    EventHandler.callEvent(EventHandler.Event.DOM_POINTERLOCKCHANGE, DomHandler.hasPointerLock());
+});
 EventHandler.addEventListener(EventHandler.Event.DOM_RESIZE, () => {
     displayDimensions.width = window.innerWidth;
     displayDimensions.height = window.innerHeight;
 });
 
+
+const stopDefaultActions = () => {
+    document.oncontextmenu = () => { return false };
+    document.addEventListener('keydown', (event) => {
+        event.preventDefault();
+    });
+};
+//stopDefaultActions();

@@ -29,7 +29,10 @@ export default class Renderer extends Component{
     };
 
     render = () => {
+        let time = performance.now();
         this.renderer.render(this.scene, this.camera);
+        time = performance.now() - time;
+        EventHandler.callEvent(EventHandler.Event.RENDERER_RENDER_COMPLETE, time);
     };
 
     handleResize = () =>{

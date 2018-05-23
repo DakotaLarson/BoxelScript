@@ -8,30 +8,40 @@
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
 </head>
 <body>
-<div class="main-menu no-select">
+<div class="menu main-menu no-select">
     <span class="main-menu-title">BoxelScript</span><br/>
     <div class="main-menu-sub" id="main-menu-top">
-        <span class="main-menu-selection" id="top-opt-sp">Singleplayer</span><br/>
-        <span class="main-menu-selection" id="top-opt-mp">Multiplayer</span><br/>
-        <span class="main-menu-selection" id="top-opt-opt">Options</span>
+        <span class="menu-selection" id="top-opt-sp">Singleplayer</span><br/>
+        <span class="menu-selection" id="top-opt-mp">Multiplayer</span><br/>
+        <span class="menu-selection" id="top-opt-opt">Options</span>
     </div>
     <div class="main-menu-sub" id="main-menu-sp">
-        <span class="main-menu-selection" id="sp-opt-create">Create World</span><br/>
-        <span class="main-menu-selection" id="sp-opt-load">Load World</span><br/>
-        <span class="main-menu-selection" id="sp-opt-cancel">Cancel</span>
+        <span class="menu-selection" id="sp-opt-create">Create World</span><br/>
+        <span class="menu-selection" id="sp-opt-load">Load World</span><br/>
+        <span class="menu-selection" id="sp-opt-cancel">Cancel</span>
     </div>
     <div class="main-menu-sub" id="main-menu-mp">
-        <span class="main-menu-selection" id="mp-opt-cancel">Cancel</span>
+        <span class="menu-selection" id="mp-opt-cancel">Cancel</span>
     </div>
     <div class="main-menu-sub" id="main-menu-opt">
-        <span class="main-menu-selection" id="opt-cancel">Cancel</span>
+        <span class="menu-selection" id="opt-cancel">Cancel</span>
     </div>
-
 </div>
 <div class=gui>
+    <div class="debug-panel">
+        <span class="debug-data">FPS: <span id="debug-fps">...</span></span><br/>
+        <span class="debug-data">Rendering: <span id="debug-rendering">...</span></span><br/>
+        <span class="debug-data">Computation: <span id="debug-computation">...</span></span><br/>
+        <span class="debug-data">Idle: <span id="debug-idle">...</span></span><br/>
+    </div>
     <img src="./res/gui/crosshair.svg" class="crosshair no-select"/>
 </div>
+<div class="menu game-menu no-select">
+    <span class="menu-selection" id="game-cancel">Cancel</span>
+</div>
+
 <canvas id="game-canvas"></canvas>
 </body>
 <script src="./build/bundle.js"></script>
 </html>
+<!--https://discord.gg/kGcw5M6-->

@@ -1,9 +1,10 @@
 const eventListeners = {};
 
-const Event = {
+const Event = { //Latest Event #: 21 (Update upon event addition!)
     //GAME
     GAME_START: 0,
     GAME_ANIMATION_UPDATE: 1,
+    GAME_DEBUG_OUTPUT: 21,
     //DOM
     DOM_RESIZE: 2,
     DOM_MOUSEMOVE: 3,
@@ -27,6 +28,12 @@ const Event = {
 
     //OPT MENU
     OPTMENU_CANCEL_OPT_CLICK: 18,
+
+    //GAME MENU
+    GAMEMENU_CLOSE_REQUEST: 19,
+
+    //RENDERER
+    RENDERER_RENDER_COMPLETE: 20
 
 };
 
