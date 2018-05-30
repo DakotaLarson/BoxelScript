@@ -22,7 +22,6 @@ export default class Scene extends Component{
         geometry = new BoxGeometry(1, 1, 1);
         material = new MeshLambertMaterial({color: 0x55a3b2});
         let cube = new Mesh(geometry, material);
-        cube.position.z = -10;
         cube.position.y = 0.5;
         this.scene.add(cube);
         let hemiLight = new HemisphereLight( 0xffffff, 0xffffff, 0.6 );

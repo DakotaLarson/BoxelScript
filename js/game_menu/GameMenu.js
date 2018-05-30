@@ -11,6 +11,8 @@ export default class GameMenu extends Component {
     }
 
     enable = () => {
+        EventHandler.callEvent(EventHandler.Event.GAMEMENU_OPEN);
+
         this.cancelBtn.addEventListener('click', this.handleMenuClose);
 
         EventHandler.addEventListener(EventHandler.Event.DOM_KEYUP, this.handleKeyUp);
@@ -20,6 +22,7 @@ export default class GameMenu extends Component {
 
     disable = () => {
         this.cancelBtn.removeEventListener('click', this.handleMenuClose);
+
         EventHandler.removeEventListener(EventHandler.Event.DOM_KEYUP, this.handleKeyUp);
 
         this.element.style.display = '';
@@ -32,6 +35,6 @@ export default class GameMenu extends Component {
     };
 
     handleMenuClose = () => {
-        EventHandler.callEvent(EventHandler.Event.GAMEMENU_CLOSE_REQUEST)
+        EventHandler.callEvent(EventHandler.Event.GAMEMENU_CLOSE);
     };
 }

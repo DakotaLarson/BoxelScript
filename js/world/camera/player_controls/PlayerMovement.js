@@ -1,14 +1,16 @@
 import {Object3D, Vector3} from 'three';
 
 import Component from 'Component';
-import EventHandler from "../EventHandler";
+import EventHandler from 'EventHandler';
+import PlayerRotation from 'PlayerRotation';
 
-export default class CameraMovement extends Component{
+export default class PlayerMovement extends Component{
 
     constructor(scene, camera){
         super();
 
         this.scene = scene;
+        this.camera = camera;
 
         this.speed = 50;
         this.xSpeed = 30;
@@ -23,7 +25,6 @@ export default class CameraMovement extends Component{
         this.velocity = new Vector3();
 
         this.pitchObject = new Object3D();
-        this.pitchObject.add(camera);
 
         this.yawObject = new Object3D();
         this.yawObject.position.y = 6;
@@ -35,18 +36,32 @@ export default class CameraMovement extends Component{
         this.moveRight = false;
         this.sprinting = false;
         this.jumping = false;
+        this.firstPersonRotation = new PlayerRotation(this.yawObject, this.pitchObject);
     }
 
     enable = () => {
         this.scene.add(this.yawObject);
+        this.pitchObject.add(this.camera);
+
+        this.attachChild(this.firstPersonRotation);
 
         EventHandler.addEventListener(EventHandler.Event.GAME_ANIMATION_UPDATE, this.move);
+
+        EventHandler.addEventListener(EventHandler.Event.GUI_TOGGLE_CONTROLS_ENABLED, this.handleRotationEnabled);
+        EventHandler.addEventListener(EventHandler.Event.GUI_TOGGLE_CONTROLS_DISABLED, this.handleRotationDisabled);
     };
 
     disable = () => {
+        this.pitchObject.remove(this.camera);
         this.scene.remove(this.yawObject);
 
+        this.detachChild(this.firstPersonRotation);
+
         EventHandler.removeEventListener(EventHandler.Event.GAME_ANIMATION_UPDATE, this.move);
+
+        EventHandler.removeEventListener(EventHandler.Event.GUI_TOGGLE_CONTROLS_ENABLED, this.handleRotationEnabled);
+        EventHandler.removeEventListener(EventHandler.Event.GUI_TOGGLE_CONTROLS_DISABLED, this.handleRotationDisabled);
+        this.moveForward = this.moveBackward = this.moveLeft = this.moveRight = this.sprinting = this.jumping = false;
     };
 
     move = (delta) => {
@@ -126,9 +141,11 @@ export default class CameraMovement extends Component{
         }
     };
 
-    rotate = (deltaX, deltaY) => {
-        this.yawObject.rotation.y -= deltaX * 0.002;
-        this.pitchObject.rotation.x -= deltaY * 0.002;
-        this.pitchObject.rotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, this.pitchObject.rotation.x));
+    handleRotationEnabled = () => {
+        this.attachChild(this.firstPersonRotation);
+    };
+
+    handleRotationDisabled = () => {
+        this.detachChild(this.firstPersonRotation);
     };
 }

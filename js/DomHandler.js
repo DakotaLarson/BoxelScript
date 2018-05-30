@@ -10,6 +10,7 @@ export default class DomHandler{
     };
 
     static exitPointerLock = () => {
+        nextPointerLockExitInvoked = true;
         document.exitPointerLock();
     };
 
@@ -25,6 +26,8 @@ export default class DomHandler{
     };
 }
 
+let nextPointerLockExitInvoked = false;
+
 const displayDimensions = {
     width: window.innerWidth,
     height: window.innerHeight
@@ -37,9 +40,12 @@ const eventTitles = {
     'keyup': EventHandler.Event.DOM_KEYUP,
     'mousedown': EventHandler.Event.DOM_MOUSEDOWN,
     'mouseup': EventHandler.Event.DOM_MOUSEUP,
-    'pointerlockerror': EventHandler.Event.DOM_POINTERLOCKERROR
+    'pointerlockerror': EventHandler.Event.DOM_POINTERLOCKERROR,
+    'blur': EventHandler.Event.DOM_BLUR,
+    'focus': EventHandler.Event.DOM_FOCUS,
+    'wheel': EventHandler.Event.DOM_WHEEL
 };
-const windowEventTitles = ['resize'];
+const windowEventTitles = ['resize', 'blur', 'focus'];
 
 
 let keys = Object.keys(eventTitles);
@@ -57,7 +63,16 @@ for(let i = 0; i < keys.length; i ++){
     }
 }
 document.addEventListener('pointerlockchange', () => {
-    EventHandler.callEvent(EventHandler.Event.DOM_POINTERLOCKCHANGE, DomHandler.hasPointerLock());
+    if(DomHandler.hasPointerLock()){
+        EventHandler.callEvent(EventHandler.Event.DOM_POINTERLOCK_ENABLE);
+    }else{
+        if(nextPointerLockExitInvoked){
+            EventHandler.callEvent(EventHandler.Event.DOM_POINTERLOCK_DISABLE_INVOKED);
+            nextPointerLockExitInvoked = false;
+        }else{
+            EventHandler.callEvent(EventHandler.Event.DOM_POINTERLOCK_DISABLE);
+        }
+    }
 });
 EventHandler.addEventListener(EventHandler.Event.DOM_RESIZE, () => {
     displayDimensions.width = window.innerWidth;
@@ -71,4 +86,4 @@ const stopDefaultActions = () => {
         event.preventDefault();
     });
 };
-//stopDefaultActions();
+stopDefaultActions();

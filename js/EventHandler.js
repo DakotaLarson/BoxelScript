@@ -1,6 +1,6 @@
 const eventListeners = {};
 
-const Event = { //Latest Event #: 21 (Update upon event addition!)
+const Event = {
     //GAME
     GAME_START: 0,
     GAME_ANIMATION_UPDATE: 1,
@@ -13,8 +13,14 @@ const Event = { //Latest Event #: 21 (Update upon event addition!)
     DOM_KEYUP: 6,
     DOM_MOUSEDOWN: 7,
     DOM_MOUSEUP: 8,
-    DOM_POINTERLOCKCHANGE: 9,
+    DOM_POINTERLOCK_ENABLE: 9,
+    DOM_POINTERLOCK_DISABLE: 24,
+    DOM_POINTERLOCK_DISABLE_INVOKED: 25, //The user isn't 'escaping' pointer lock
     DOM_POINTERLOCKERROR: 10,
+    DOM_BLUR: 27,
+    DOM_FOCUS: 28,
+    DOM_WHEEL: 31,
+
     //TOP MENU
     TOPMENU_SP_OPT_CLICK: 11,
     TOPMENU_MP_OPT_CLICK: 12,
@@ -30,12 +36,21 @@ const Event = { //Latest Event #: 21 (Update upon event addition!)
     OPTMENU_CANCEL_OPT_CLICK: 18,
 
     //GAME MENU
-    GAMEMENU_CLOSE_REQUEST: 19,
+    GAMEMENU_CLOSE: 19,
+    GAMEMENU_OPEN: 26,
 
     //RENDERER
-    RENDERER_RENDER_COMPLETE: 20
+    RENDERER_RENDER_COMPLETE: 20,
 
-};
+    //GUI TEMPORARY TOGGLE
+    GUI_TOGGLE_CONTROLS_ENABLED: 22,
+    GUI_TOGGLE_CONTROLS_DISABLED: 23,
+
+    //CONTROLS SELECTOR TOGGLE
+    CONTROLS_TOGGLE_PLAYER: 29,
+    CONTROLS_TOGGLE_BUILDER: 30
+
+};//Latest Event #: 31 (Update upon event addition!)
 
 export default class EventHandler{
 

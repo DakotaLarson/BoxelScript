@@ -78,10 +78,5 @@ class Game extends Component{
     };
 
 
-    let updateDebugData = () => {
-
-    }
-
-
 })();
 

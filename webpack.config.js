@@ -27,6 +27,9 @@ module.exports = {
             path.resolve('./js/'),
             path.resolve('./js/main_menu/'),
             path.resolve('./js/world/'),
+            path.resolve('./js/world/camera'),
+            path.resolve('./js/world/camera/player_controls'),
+            path.resolve('./js/world/camera/builder_controls'),
             path.resolve('./js/gui'),
             path.resolve('./js/game_menu'),
             path.resolve('./node_modules')

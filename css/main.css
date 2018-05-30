@@ -75,3 +75,18 @@ html, body{
     color: white;
     font-size: 12px;
 }
+/*Camera Toggle*/
+.controls-toggle{
+    display: inline-block;
+    font-size: 15px;
+    background-color: orangered;
+    color: white;
+    margin-top: 5px;
+    padding: 5px 10px;
+}
+.controls-toggle:hover{
+    cursor: pointer;
+}
+.controls-toggle-toggled{
+    background-color: slateblue;
+}
