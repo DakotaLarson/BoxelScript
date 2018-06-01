@@ -54,15 +54,11 @@ WebSockets are generally too slow for sub-second, real time data due to the reli
 
 YouTube will be the primary platform for distributing information to the community. Discord will be the primary platform for community members to communicate and connect. Twitter, Instagram and Facebook will be used to update followers as needed.
 
-YouTube: <Link>
- 
-Discord: <Link>
-
-Twitter: <Link>
-
-Instagram: <Link>
- 
-Facebook: <Link>
+* [YouTube](https://www.youtube.com/channel/UCkQLB3--Cx26bjPztWJazRA)
+* [Discord](https://discord.gg/kGcw5M6)
+* [Twitter](https://twitter.com/kotamigo)
+* [Instagram](https://www.instagram.com/kotamigo/)
+* [Facebook](https://www.facebook.com/KotamigoDev)
 
  ## Transparency
  
