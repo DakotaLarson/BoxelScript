@@ -26,7 +26,7 @@ export default class BuilderControls extends Component{
         this.azimuth = Math.PI /3; // horizontal rotation
         this.altitude = Math.PI / 4; // vertical rotation [0, PI] (PI/2 = horizontal view, 0 is vertical down)
         this.distance = 50; // distance [5, 100]
-        this.spherical = new Spherical(this.distance, this.altitude, this.azimuth);
+        this.spherical = new Spherical(50, Math.PI / 4, Math.PI / 3);
 
         this.state = -1;
     }
@@ -91,16 +91,34 @@ export default class BuilderControls extends Component{
     };
 
     handleRotation = (deltaX, deltaY) => {
-
+         this.spherical.theta += deltaX * Math.PI /180 / 2;
+         this.spherical.phi += deltaY * Math.PI / 180 / 2;
+         this.spherical.phi = Math.min(Math.PI / 2 - Math.PI / 24, this.spherical.phi);
+         this.update();
     };
 
     handlePan = (deltaX, deltaY) => {
-
+        console.log(deltaX + ' ' + deltaY);
     };
 
     handleZoom = (deltaY, isScroll) => {
-
+        if(isScroll){
+            if(deltaY > 0){
+                this.spherical.radius = Math.min(this.spherical.radius + 5, 100);
+            }else{
+                this.spherical.radius = Math.max(this.spherical.radius - 5, 5);
+            }
+        }else{
+            this.spherical.radius = Math.max(Math.min(this.spherical.radius + deltaY / 5, 100), 5);
+        }
+        this.update();
     };
+
+    update = () => {
+        this.camera.position.setFromSpherical(this.spherical.makeSafe());
+        this.camera.lookAt(this.target);
+
+    }
 }
 
 
