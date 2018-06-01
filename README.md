@@ -52,7 +52,17 @@ WebSockets are generally too slow for sub-second, real time data due to the reli
 
 ## Social Media
 
-YouTube will be the primary platform for distributing information to the community. Updates will be posted to Twitter throughout each week. Screenshots of progress will be posted to Instagram. A Facebook Page will also be created. 
+YouTube will be the primary platform for distributing information to the community. Discord will be the primary platform for community members to communicate and connect. Twitter, Instagram and Facebook will be used to update followers as needed.
+
+YouTube: <Link>
+ 
+Discord: <Link>
+
+Twitter: <Link>
+
+Instagram: <Link>
+ 
+Facebook: <Link>
 
  ## Transparency
  
@@ -60,12 +70,4 @@ YouTube will be the primary platform for distributing information to the communi
  
  ## Finances
  
-Community members will be able to support the creation of the project through Patreon. There may also be a PayPal link for one-time payments, and in the future a financial application created for the game.  
- 
- 
- 
- 
- 
- 
- 
- 
+Community members will be able to support the creation of the project monthly through Patreon or one time donation through some other platform. This will be created once there has been progress worthy of contribution. The end goals of this project are not financially motivated. 
