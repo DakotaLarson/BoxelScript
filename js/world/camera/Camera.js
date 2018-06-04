@@ -10,6 +10,7 @@ export default class Camera extends Component{
     constructor(scene){
         super();
         this.camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        this.state.controls = 'player';
 
         this.playerControls = new PlayerControls(scene, this.getCamera());
         this.builderControls = new BuilderControls(this.getCamera());
@@ -21,15 +22,14 @@ export default class Camera extends Component{
         EventHandler.addEventListener(EventHandler.Event.GAMEMENU_CLOSE, this.onGameMenuClose);
         EventHandler.addEventListener(EventHandler.Event.CONTROLS_TOGGLE_BUILDER, this.onToggleBuilder);
         EventHandler.addEventListener(EventHandler.Event.CONTROLS_TOGGLE_PLAYER, this.onTogglePlayer);
-        this.attachChild(this.builderControls);
+        this.attachControls();
     };
 
     disable = () => {
         EventHandler.removeEventListener(EventHandler.Event.DOM_RESIZE, this.onResize);
         EventHandler.removeEventListener(EventHandler.Event.GAMEMENU_OPEN, this.onGameMenuOpen);
         EventHandler.removeEventListener(EventHandler.Event.GAMEMENU_CLOSE, this.onGameMenuClose);
-        this.detachChild(this.builderControls);
-
+        this.detachControls();
     };
 
     onResize = () => {
@@ -43,18 +43,38 @@ export default class Camera extends Component{
     };
 
     onGameMenuOpen = () => {
-        this.detachChild(this.builderControls);
+        this.detachControls();
     };
 
     onGameMenuClose = () => {
-        this.attachChild(this.builderControls);
+        this.attachControls();
     };
 
     onToggleBuilder = () => {
-        this.detachChild(this.builderControls);
+        this.detachControls();
+        this.state.controls = 'builder';
+        this.attachControls();
     };
 
     onTogglePlayer = () => {
-        this.attachChild(this.playerControls);
-    }
+        this.detachControls();
+        this.state.controls = 'player';
+        this.attachControls();
+    };
+
+    attachControls = () => {
+        if(this.state.controls === 'player'){
+            this.attachChild(this.playerControls);
+        }else if(this.state.controls === 'builder'){
+            this.attachChild(this.builderControls);
+        }
+    };
+
+    detachControls = () => {
+        if(this.state.controls === 'player'){
+            this.detachChild(this.playerControls);
+        }else if(this.state.controls === 'builder'){
+            this.detachChild(this.builderControls);
+        }
+    };
 }

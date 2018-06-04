@@ -7,7 +7,7 @@ export default class ControlsToggle extends Component{
     constructor(parent){
         super();
         this.element = DomHandler.getElement('.controls-toggle', parent);
-        this.cameraState = 'player';
+        this.state.camera = 'player';
     }
 
     enable = () => {
@@ -25,21 +25,21 @@ export default class ControlsToggle extends Component{
     };
 
     handleClick = () => {
-        if(this.cameraState === 'player'){
+        if(this.state.camera === 'player'){
             EventHandler.callEvent(EventHandler.Event.CONTROLS_TOGGLE_BUILDER);
-        }else if(this.cameraState === 'builder'){
+        }else if(this.state.camera === 'builder'){
             EventHandler.callEvent(EventHandler.Event.CONTROLS_TOGGLE_PLAYER);
         }
     };
 
     toBuilder = () => {
-        this.cameraState = 'builder';
+        this.state.camera = 'builder';
         this.element.textContent = 'Player Controls';
         this.element.classList.add('controls-toggle-toggled');
     };
 
     toPlayer = () => {
-        this.cameraState = 'player';
+        this.state.camera = 'player';
         this.element.textContent = 'Builder Controls';
         this.element.classList.remove('controls-toggle-toggled');
     };

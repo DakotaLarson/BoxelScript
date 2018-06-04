@@ -23,8 +23,6 @@ export default class PlayerControls extends Component{
     disable = () => {
         EventHandler.removeEventListener(EventHandler.Event.DOM_KEYDOWN, this.onKeyDown);
         EventHandler.removeEventListener(EventHandler.Event.DOM_KEYUP, this.onKeyUp);
-
-        this.detachChild(this.movement);
     };
 
     onKeyDown = (event) => {

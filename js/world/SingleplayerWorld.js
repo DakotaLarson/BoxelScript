@@ -16,10 +16,13 @@ export default class SingleplayerWorld extends Component{
         this.gui = new GUI();
         this.gameMenu = new GameMenu();
 
+        this.state.gameMenuEnabled = false;
 
     }
 
     enable = () => {
+        console.log('reached');
+        EventHandler.addEventListener(EventHandler.Event.DOM_KEYDOWN, this.onKeyDown);
         EventHandler.addEventListener(EventHandler.Event.DOM_POINTERLOCK_DISABLE, this.onPointerLockDisable);
         EventHandler.addEventListener(EventHandler.Event.GAMEMENU_CLOSE, this.onGameMenuCancel);
         EventHandler.addEventListener(EventHandler.Event.DOM_BLUR, this.onPointerLockDisable);
@@ -42,11 +45,23 @@ export default class SingleplayerWorld extends Component{
         this.detachChild(this.gui);
     };
 
+    onKeyDown = (event) => {
+        console.log('test');
+        if(event.code === 'Escape' && !this.state.gameMenuEnabled){
+            this.attachChild(this.gameMenu);
+            this.state.gameMenuEnabled = true;
+        }
+    };
+
     onPointerLockDisable = () => {
-        this.attachChild(this.gameMenu);
+        if(!this.state.gameMenuEnabled){
+            this.attachChild(this.gameMenu);
+            this.state.gameMenuEnabled = true;
+        }
     };
 
     onGameMenuCancel = () => {
         this.detachChild(this.gameMenu);
+        this.state.gameMenuEnabled = false;
     };
 }

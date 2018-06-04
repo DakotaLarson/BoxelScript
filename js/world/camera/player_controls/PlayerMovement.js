@@ -40,6 +40,8 @@ export default class PlayerMovement extends Component{
     }
 
     enable = () => {
+        console.log(this.camera.position);
+        console.log(this.camera.rotation);
         this.scene.add(this.yawObject);
         this.pitchObject.add(this.camera);
 
@@ -54,8 +56,6 @@ export default class PlayerMovement extends Component{
     disable = () => {
         this.pitchObject.remove(this.camera);
         this.scene.remove(this.yawObject);
-
-        this.detachChild(this.firstPersonRotation);
 
         EventHandler.removeEventListener(EventHandler.Event.GAME_ANIMATION_UPDATE, this.move);
 

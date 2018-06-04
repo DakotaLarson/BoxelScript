@@ -2,6 +2,7 @@ export default class Component{
     constructor(){
         this.children = [];
         this.parent = null;
+        this.state = {};
     }
     enable = () =>{};
     disable = () => {};
