@@ -13,6 +13,7 @@ export default class GUI extends Component {
         this.debugPanel = new DebugPanel(this.element);
         this.temporaryToggle = new GUITemporaryToggle();
         this.controlsToggle = new ControlsToggle(this.element);
+
     }
 
     enable = () => {
@@ -20,8 +21,10 @@ export default class GUI extends Component {
         this.attachChild(this.temporaryToggle);
         this.attachChild(this.controlsToggle);
 
-        EventHandler.addEventListener(EventHandler.Event.GAMEMENU_OPEN, this.handleGameMenuOpen);
-        EventHandler.addEventListener(EventHandler.Event.GAMEMENU_CLOSE, this.handleGameMenuClose);
+        EventHandler.addEventListener(EventHandler.Event.GAMEMENU_OPEN, this.detachToggle);
+        EventHandler.addEventListener(EventHandler.Event.GAMEMENU_CLOSE, this.attachToggle);
+        EventHandler.addEventListener(EventHandler.Event.CONTROLS_TOGGLE_BUILDER, this.detachToggle);
+        EventHandler.addEventListener(EventHandler.Event.CONTROLS_TOGGLE_PLAYER, this.attachToggle);
 
         this.element.style.display = 'block';
     };
@@ -31,17 +34,23 @@ export default class GUI extends Component {
         this.detachChild(this.temporaryToggle);
         this.detachChild(this.controlsToggle);
 
-        EventHandler.removeEventListener(EventHandler.Event.GAMEMENU_OPEN, this.handleGameMenuOpen);
-        EventHandler.removeEventListener(EventHandler.Event.GAMEMENU_CLOSE, this.handleGameMenuClose);
+        EventHandler.removeEventListener(EventHandler.Event.GAMEMENU_OPEN, this.detachToggle);
+        EventHandler.removeEventListener(EventHandler.Event.GAMEMENU_CLOSE, this.attachToggle);
+        EventHandler.removeEventListener(EventHandler.Event.CONTROLS_TOGGLE_BUILDER, this.detachToggle);
+        EventHandler.removeEventListener(EventHandler.Event.CONTROLS_TOGGLE_PLAYER, this.attachToggle);
 
         this.element.style.display = '';
     };
 
-    handleGameMenuOpen = () => {
+    detachToggle = () => {
         this.detachChild(this.temporaryToggle);
+        EventHandler.removeEventListener(EventHandler.Event.GAMEMENU_OPEN, this.detachToggle);
+        EventHandler.removeEventListener(EventHandler.Event.GAMEMENU_CLOSE, this.attachToggle);
     };
 
-    handleGameMenuClose = () => {
+    attachToggle = () => {
         this.attachChild(this.temporaryToggle);
-    }
+        EventHandler.addEventListener(EventHandler.Event.GAMEMENU_OPEN, this.detachToggle);
+        EventHandler.addEventListener(EventHandler.Event.GAMEMENU_CLOSE, this.attachToggle);
+    };
 }

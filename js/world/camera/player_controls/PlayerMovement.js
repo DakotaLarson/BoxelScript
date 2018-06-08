@@ -40,8 +40,6 @@ export default class PlayerMovement extends Component{
     }
 
     enable = () => {
-        console.log(this.camera.position);
-        console.log(this.camera.rotation);
         this.scene.add(this.yawObject);
         this.pitchObject.add(this.camera);
 

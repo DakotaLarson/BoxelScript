@@ -10,7 +10,7 @@ export default class Camera extends Component{
     constructor(scene){
         super();
         this.camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        this.state.controls = 'player';
+        this.state.controls = 'builder';
 
         this.playerControls = new PlayerControls(scene, this.getCamera());
         this.builderControls = new BuilderControls(this.getCamera());
@@ -43,10 +43,12 @@ export default class Camera extends Component{
     };
 
     onGameMenuOpen = () => {
+        console.log('open');
         this.detachControls();
     };
 
     onGameMenuClose = () => {
+        console.log('close');
         this.attachControls();
     };
 
@@ -64,6 +66,8 @@ export default class Camera extends Component{
 
     attachControls = () => {
         if(this.state.controls === 'player'){
+            this.camera.position.set(0, 0, 0);
+            this.camera.rotation.set(0, 0, 0);
             this.attachChild(this.playerControls);
         }else if(this.state.controls === 'builder'){
             this.attachChild(this.builderControls);

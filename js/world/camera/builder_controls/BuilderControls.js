@@ -1,5 +1,6 @@
 import Component from 'Component';
 import EventHandler from 'EventHandler';
+import DomHandler from 'DomHandler';
 
 import {Vector3, Spherical} from 'three';
 
@@ -22,10 +23,6 @@ export default class BuilderControls extends Component{
 
         this.target = new Vector3();
         this.position = new Vector3();
-
-        this.azimuth = Math.PI /3; // horizontal rotation
-        this.altitude = Math.PI / 4; // vertical rotation [0, PI] (PI/2 = horizontal view, 0 is vertical down)
-        this.distance = 50; // distance [5, 100]
         this.spherical = new Spherical(50, Math.PI / 4, Math.PI / 3);
 
         this.state = -1;
@@ -39,9 +36,6 @@ export default class BuilderControls extends Component{
 
         this.camera.position.setFromSpherical(this.spherical);
         this.camera.lookAt(new Vector3());
-        console.log(this.camera.position);
-        console.log(this.spherical);
-
     };
 
     disable = () => {
@@ -98,7 +92,26 @@ export default class BuilderControls extends Component{
     };
 
     handlePan = (deltaX, deltaY) => {
-        console.log(deltaX + ' ' + deltaY);
+        let offset = new Vector3();
+        let position = this.camera.position;
+        offset.copy(position).sub(this.target);
+
+        let targetDistance = offset.length();
+        targetDistance *= Math.tan(this.camera.fov / 2 * Math.PI / 180);
+
+        let yVec = new Vector3();
+        let xVec = new Vector3();
+
+        yVec.setFromMatrixColumn(this.camera.matrix, 0);
+        xVec.copy(yVec);
+
+        yVec.crossVectors(this.camera.up, yVec);
+        yVec.multiplyScalar(2 * deltaY * targetDistance / DomHandler.getDisplayDimensions().height);
+        this.target.add(yVec);
+
+        xVec.multiplyScalar(-(2 * deltaX * targetDistance / DomHandler.getDisplayDimensions().height));
+        this.target.add(xVec);
+        this.update();
     };
 
     handleZoom = (deltaY, isScroll) => {
@@ -116,6 +129,7 @@ export default class BuilderControls extends Component{
 
     update = () => {
         this.camera.position.setFromSpherical(this.spherical.makeSafe());
+        this.camera.position.add(this.target);
         this.camera.lookAt(this.target);
 
     }

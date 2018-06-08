@@ -21,7 +21,6 @@ export default class SingleplayerWorld extends Component{
     }
 
     enable = () => {
-        console.log('reached');
         EventHandler.addEventListener(EventHandler.Event.DOM_KEYDOWN, this.onKeyDown);
         EventHandler.addEventListener(EventHandler.Event.DOM_POINTERLOCK_DISABLE, this.onPointerLockDisable);
         EventHandler.addEventListener(EventHandler.Event.GAMEMENU_CLOSE, this.onGameMenuCancel);
@@ -46,7 +45,6 @@ export default class SingleplayerWorld extends Component{
     };
 
     onKeyDown = (event) => {
-        console.log('test');
         if(event.code === 'Escape' && !this.state.gameMenuEnabled){
             this.attachChild(this.gameMenu);
             this.state.gameMenuEnabled = true;
